@@ -9,20 +9,30 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
         }
 
         :root {
-            --primary: #5a72e6;
-            --dark: #111827;
-            --light: #f9fafb;
-            --text: #1f2937;
+            --primary: #4169e1;
+            --secondary: #ff4500;
+            --dark: #0c0f1a;
+            --darker: #070910;
+            --light: #f0f2f5;
+            --text: #e0e5f0;
+            --card-bg: #151a2e;
+            --border: #2a3046;
         }
 
         body {
-            background: var(--light);
+            background: var(--darker);
             color: var(--text);
             line-height: 1.6;
+            background-image: 
+                linear-gradient(rgba(7,9,16,0.95), rgba(7,9,16,0.98)),
+                url('https://picsum.photos/id/169/1920/1080');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
 
         .container {
@@ -33,126 +43,182 @@
 
         /* Header */
         header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: rgba(12,15,26,0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 99;
+            z-index: 999;
         }
         .header-wrap {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 75px;
         }
         .logo {
-            font-size: 22px;
-            font-weight: bold;
+            font-size: 24px;
+            font-weight: 800;
             color: var(--primary);
+            text-shadow: 0 0 12px rgba(65,105,225,0.4);
+            letter-spacing: 1px;
         }
         .lang-select {
-            padding: 6px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 8px 14px;
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             outline: none;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-select:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(65,105,225,0.2);
         }
 
         /* Hero */
         .hero {
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
-            background: linear-gradient(135deg, #4a6cf7, #3e51c7);
-            color: white;
+            background: linear-gradient(135deg, #1e2958, #0f1429);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://picsum.photos/id/168/1920/1080') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 1;
         }
         .hero h1 {
-            font-size: 32px;
-            margin-bottom: 16px;
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(65,105,225,0.4);
+            font-weight: 800;
         }
         .hero p {
-            font-size: 18px;
+            font-size: 19px;
             max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
+            margin: 0 auto 30px;
+            opacity: 0.92;
         }
         .hero-img {
-            max-width: 640px;
+            max-width: 720px;
             width: 100%;
-            margin-top: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 20px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
         }
 
         /* Features */
         .features {
-            padding: 60px 0;
+            padding: 80px 0;
         }
         .section-title {
             text-align: center;
-            font-size: 26px;
-            margin-bottom: 40px;
-            color: var(--dark);
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #fff;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(65,105,225,0.3);
         }
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 30px;
         }
         .feature-card {
-            background: white;
-            padding: 28px;
-            border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
             transition: 0.3s;
         }
         .feature-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        .feature-card:hover::before {
+            opacity: 1;
         }
         .feature-card h3 {
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-size: 18px;
+            color: #fff;
+            margin-bottom: 14px;
+            font-size: 21px;
+            font-weight: 600;
         }
         .feature-img {
             width: 100%;
-            height: 160px;
+            height: 190px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
         }
 
         /* Tags */
         .tags {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
-            background: white;
+            background: var(--dark);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .tags h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #fff;
         }
         .tag-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 14px;
         }
         .tag {
-            padding: 8px 16px;
-            background: var(--primary);
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary), #3553b4);
             color: white;
-            border-radius: 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(65,105,225,0.2);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
-            color: white;
+            background: var(--darker);
+            color: #a0a8c0;
             text-align: center;
-            padding: 40px 0;
-            margin-top: 40px;
+            padding: 50px 0;
+            margin-top: 30px;
+            border-top: 1px solid var(--border);
         }
         .footer-mail {
-            margin-top: 10px;
+            margin-top: 14px;
             font-size: 16px;
-            color: #9ca3af;
+            color: #707a9a;
         }
 
         /* Responsive */
@@ -161,7 +227,10 @@
                 grid-template-columns: 1fr;
             }
             .hero h1 {
-                font-size: 24px;
+                font-size: 28px;
+            }
+            .section-title {
+                font-size: 26px;
             }
         }
 
@@ -284,7 +353,7 @@
             <p>Thu thập bài lính thuê, lập đội 3 người và chiến đấu với quân đội ma quỷ hùng mạnh!</p>
         </div>
 
-        <img src="https://picsum.photos/id/122/1200/500" alt="Game Banner" class="hero-img">
+        <img src="https://picsum.photos/id/168/1200/500" alt="荒原特工队游戏封面" class="hero-img">
     </div>
 </section>
 
@@ -310,7 +379,7 @@
 
         <div class="feature-grid">
             <div class="feature-card">
-                <img src="https://picsum.photos/id/160/400/200" alt="Feature" class="feature-img">
+                <img src="https://picsum.photos/id/160/400/200" alt="游戏特色" class="feature-img">
                 <h3 data-lang="zh-CN">卡牌收集 + 平台放置战斗</h3>
                 <h3 data-lang="zh-TW">卡牌收集＋平台放置戰鬥</h3>
                 <h3 data-lang="en">Card Collection + Platform Combat</h3>
@@ -346,7 +415,7 @@
             </div>
 
             <div class="feature-card">
-                <img src="https://picsum.photos/id/176/400/200" alt="Feature" class="feature-img">
+                <img src="https://picsum.photos/id/176/400/200" alt="游戏特色" class="feature-img">
                 <h3 data-lang="zh-CN">操作简单，充满策略</h3>
                 <h3 data-lang="zh-TW">操作簡單，充滿策略</h3>
                 <h3 data-lang="en">Simple & Strategic</h3>
@@ -382,7 +451,7 @@
             </div>
 
             <div class="feature-card">
-                <img src="https://picsum.photos/id/152/400/200" alt="Feature" class="feature-img">
+                <img src="https://picsum.photos/id/152/400/200" alt="游戏特色" class="feature-img">
                 <h3 data-lang="zh-CN">随机地图，肉鸽玩法</h3>
                 <h3 data-lang="zh-TW">隨機地圖，肉鴿玩法</h3>
                 <h3 data-lang="en">Random Maps, Roguelike</h3>
@@ -418,7 +487,7 @@
             </div>
 
             <div class="feature-card">
-                <img src="https://picsum.photos/id/147/400/200" alt="Feature" class="feature-img">
+                <img src="https://picsum.photos/id/147/400/200" alt="游戏特色" class="feature-img">
                 <h3 data-lang="zh-CN">怪物装备自由掉落</h3>
                 <h3 data-lang="zh-TW">怪物裝備自由掉落</h3>
                 <h3 data-lang="en">Monster Equipment Drops</h3>
