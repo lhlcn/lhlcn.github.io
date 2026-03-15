@@ -1,32 +1,635 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>热血修真</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>荒原特工队 - Wasteland Squad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary: #5a72e6;
+            --dark: #111827;
+            --light: #f9fafb;
+            --text: #1f2937;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .lang-select {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #4a6cf7, #3e51c7);
+            color: white;
+        }
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        .hero-img {
+            max-width: 640px;
+            width: 100%;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+            transition: 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .feature-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        /* Tags */
+        .tags {
+            padding: 40px 0;
+            text-align: center;
+            background: white;
+        }
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .tag {
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        .footer-mail {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width:768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 24px;
+            }
+        }
+
+        [data-lang] {
+            display: none;
+        }
+        [data-lang].active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <blockquote>
-            《热血修真》
-            <small>Someone famous in <cite title="Source Title">探险，解谜，轻度挂机</cite></small>
-            <p>
-                热血修真是一款穿越，异世界修仙题材的游戏。玩法集放置，休闲挂机，惊喜爆神装于一体。游戏不采用繁杂的成长体系和夸张的战斗力数字来定义实力。装备和技能从零开始，平滑过渡，让每一件装备都有获得的惊喜感和提升感。
-            </p>
-        </blockquote>
-        <blockquote>
-            技术支持
-            <small>upport</small>
-            <p>
-                游戏中遇到任何问题，请通过以下方式联系我们，我们将竭尽全力为您解决。
-            </p>
-            <p>
-                邮箱：liuhuan_l_h@163.com
-            </p>
-        </blockquote>
+
+<!-- Header -->
+<header>
+    <div class="container header-wrap">
+        <div class="logo" data-lang="zh-CN">荒原特工队</div>
+        <div class="logo" data-lang="zh-TW">荒原特工隊</div>
+        <div class="logo" data-lang="en">Wasteland Squad</div>
+        <div class="logo" data-lang="fr">Escouade Wasteland</div>
+        <div class="logo" data-lang="de">Wasteland Kommando</div>
+        <div class="logo" data-lang="hi">वेस्टलैंड स्क्वाड</div>
+        <div class="logo" data-lang="id">Pasukan Wasteland</div>
+        <div class="logo" data-lang="it">Squadra Wasteland</div>
+        <div class="logo" data-lang="ja">荒野の戦士</div>
+        <div class="logo" data-lang="ko">황야 특전대</div>
+        <div class="logo" data-lang="pl">Oddział Wasteland</div>
+        <div class="logo" data-lang="pt-BR">Esquadrão Wasteland</div>
+        <div class="logo" data-lang="ru">Отряд Пустоши</div>
+        <div class="logo" data-lang="es">Escuadrón Wasteland</div>
+        <div class="logo" data-lang="th">หน่วยรบทุ่งร้าง</div>
+        <div class="logo" data-lang="vi">Đội Đặc Nhiệm Hoang Dã</div>
+
+        <select class="lang-select" id="langSwitch">
+            <option value="zh-CN">简体中文</option>
+            <option value="zh-TW">繁體中文</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="hi">Hindi</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="pl">Polski</option>
+            <option value="pt-BR">Português (Brasil)</option>
+            <option value="ru">Русский</option>
+            <option value="es">Español</option>
+            <option value="th">ภาษาไทย</option>
+            <option value="vi">Tiếng Việt</option>
+        </select>
     </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div data-lang="zh-CN" class="active">
+            <h1>荒原特工队</h1>
+            <p>收集佣兵卡牌，集结3人小队，与强大恶魔军团战斗！操作简单，玩法丰富，随机地图，装备自由掉落！</p>
+        </div>
+        <div data-lang="zh-TW">
+            <h1>荒原特工隊</h1>
+            <p>收集傭兵卡牌，集結3人小隊，與強大惡魔軍團戰鬥！操作簡單，玩法豐富，隨機地圖，裝備自由掉落！</p>
+        </div>
+        <div data-lang="en">
+            <h1>Wasteland Squad</h1>
+            <p>Collect mercenary cards, assemble a 3-character team, and fight the powerful demon army! Simple controls, rich gameplay, random maps, and free equipment drops!</p>
+        </div>
+        <div data-lang="fr">
+            <h1>Escouade Wasteland</h1>
+            <p>Collectez des cartes de mercenaires, formez une équipe de 3 personnages et combattez la puissante armée de démons !</p>
+        </div>
+        <div data-lang="de">
+            <h1>Wasteland Kommando</h1>
+            <p>Sammle Söldnerkarten, stelle ein 3-köpfiges Team zusammen und kämpfe gegen die mächtige Dämonenarmee!</p>
+        </div>
+        <div data-lang="hi">
+            <h1>वेस्टलैंड स्क्वाड</h1>
+            <p>भाड़े के कर्मचारी कार्ड एकत्र करें, 3-चरित्र टीम इकट्ठा करें, और शक्तिशाली राक्षस सेना से लड़ें!</p>
+        </div>
+        <div data-lang="id">
+            <h1>Pasukan Wasteland</h1>
+            <p>Kumpulkan kartu tentara bayaran, bentuk tim 3 orang, dan lawan pasukan iblis yang kuat!</p>
+        </div>
+        <div data-lang="it">
+            <h1>Squadra Wasteland</h1>
+            <p>Colleziona carte di mercenari, forma una squadra di 3 personaggi e combatti contro il potente esercito di demoni!</p>
+        </div>
+        <div data-lang="ja">
+            <h1>荒野の戦士</h1>
+            <p>傭兵カードを集めて3人チームを編成し、強力な悪魔軍団と戦おう！</p>
+        </div>
+        <div data-lang="ko">
+            <h1>황야 특전대</h1>
+            <p>용병 카드를 모아 3인 팀을 구성하고 강력한 악마 군단과 싸우세요!</p>
+        </div>
+        <div data-lang="pl">
+            <h1>Oddział Wasteland</h1>
+            <p>Zbieraj karty najemników, składaj 3-osobową drużynę i walcz z potężną armią demonów!</p>
+        </div>
+        <div data-lang="pt-BR">
+            <h1>Esquadrão Wasteland</h1>
+            <p>Colete cartas de mercenários, monte um time de 3 personagens e lute contra o poderoso exército de demônios!</p>
+        </div>
+        <div data-lang="ru">
+            <h1>Отряд Пустоши</h1>
+            <p>Собирайте карты наемников, формируйте команду из 3 персонажей и сражайтесь с могучей армией демонов!</p>
+        </div>
+        <div data-lang="es">
+            <h1>Escuadrón Wasteland</h1>
+            <p>Colecciona cartas de mercenarios, forma un equipo de 3 personajes y lucha contra el poderoso ejército de demonios.</p>
+        </div>
+        <div data-lang="th">
+            <h1>หน่วยรบทุ่งร้าง</h1>
+            <p>สะสมการ์ดพวกเช่า กลุ่มทีม 3 ตัวละคร ต่อสู้กับกองทัพปีศาจที่ทรงพลัง!</p>
+        </div>
+        <div data-lang="vi">
+            <h1>Đội Đặc Nhiệm Hoang Dã</h1>
+            <p>Thu thập bài lính thuê, lập đội 3 người và chiến đấu với quân đội ma quỷ hùng mạnh!</p>
+        </div>
+
+        <img src="https://picsum.photos/id/122/1200/500" alt="Game Banner" class="hero-img">
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+    <div class="container">
+        <h2 class="section-title" data-lang="zh-CN">游戏特色</h2>
+        <h2 class="section-title" data-lang="zh-TW">遊戲特色</h2>
+        <h2 class="section-title" data-lang="en">Game Features</h2>
+        <h2 class="section-title" data-lang="fr">Caractéristiques du Jeu</h2>
+        <h2 class="section-title" data-lang="de">Spieleigenschaften</h2>
+        <h2 class="section-title" data-lang="hi">खेल की विशेषताएं</h2>
+        <h2 class="section-title" data-lang="id">Fitur Game</h2>
+        <h2 class="section-title" data-lang="it">Caratteristiche del Gioco</h2>
+        <h2 class="section-title" data-lang="ja">ゲーム特徴</h2>
+        <h2 class="section-title" data-lang="ko">게임 특징</h2>
+        <h2 class="section-title" data-lang="pl">Cechy Gry</h2>
+        <h2 class="section-title" data-lang="pt-BR">Características do Jogo</h2>
+        <h2 class="section-title" data-lang="ru">Особенности игры</h2>
+        <h2 class="section-title" data-lang="es">Características del Juego</h2>
+        <h2 class="section-title" data-lang="th">จุดเด่นของเกม</h2>
+        <h2 class="section-title" data-lang="vi">Đặc Trưng Game</h2>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <img src="https://picsum.photos/id/160/400/200" alt="Feature" class="feature-img">
+                <h3 data-lang="zh-CN">卡牌收集 + 平台放置战斗</h3>
+                <h3 data-lang="zh-TW">卡牌收集＋平台放置戰鬥</h3>
+                <h3 data-lang="en">Card Collection + Platform Combat</h3>
+                <h3 data-lang="fr">Collection de cartes + Combat en Plateforme</h3>
+                <h3 data-lang="de">Kartensammeln + Plattformkampf</h3>
+                <h3 data-lang="hi">कार्ड संग्रह + प्लेटफॉर्म लड़ाई</h3>
+                <h3 data-lang="id">Koleksi Kartu + Pertarungan Platform</h3>
+                <h3 data-lang="it">Collezione di Carte + Combattimento in Piattaforma</h3>
+                <h3 data-lang="ja">カード収集＋プラットフォームバトル</h3>
+                <h3 data-lang="ko">카드 수집 + 플랫폼 전투</h3>
+                <h3 data-lang="pl">Kolekcjonowanie Kart + Walki Platformowe</h3>
+                <h3 data-lang="pt-BR">Coleção de Cartas + Combate em Plataforma</h3>
+                <h3 data-lang="ru">Сбор карт + Платформенные бои</h3>
+                <h3 data-lang="es">Colección de Cartas + Combate en Plataforma</h3>
+                <h3 data-lang="th">สะสมการ์ด + ต่อสู้บนแพลตฟอร์ม</h3>
+                <h3 data-lang="vi">Thu thập bài + Chiến đấu nền tảng</h3>
+                <p data-lang="zh-CN">收集不同技能卡牌，搭配装备，部署战场自动战斗。</p>
+                <p data-lang="zh-TW">收集不同技能卡牌，搭配裝備，部署戰場自動戰鬥。</p>
+                <p data-lang="en">Collect cards with various skills, equip gear, and deploy to battle.</p>
+                <p data-lang="fr">Collectez des cartes aux compétences variées, équipez des équipements.</p>
+                <p data-lang="de">Sammle Karten mit verschiedenen Fähigkeiten und rüste sie aus.</p>
+                <p data-lang="hi">विभिन्न कौशल कार्ड एकत्र करें, गियर लगाएं।</p>
+                <p data-lang="id">Kumpulkan kartu dengan skill berbeda, lengkapi peralatan.</p>
+                <p data-lang="it">Colleziona carte con abilità diverse e equipaggiale.</p>
+                <p data-lang="ja">様々なスキルカードを集め、装備を組み合わせて戦場へ。</p>
+                <p data-lang="ko">다양한 스킬 카드를 모아 장비를 착용시키고 전투에 투입하세요.</p>
+                <p data-lang="pl">Zbieraj karty z różnymi umiejętnościami i wyposażaj je.</p>
+                <p data-lang="pt-BR">Colete cartas com várias habilidades e equipe equipamentos.</p>
+                <p data-lang="ru">Собирайте карты с разными умениями и снаряжайте их.</p>
+                <p data-lang="es">Colecciona cartas con distintas habilidades y equípalas.</p>
+                <p data-lang="th">สะสมการ์ดสกิลต่างๆ อัพเกรดอุปกรณ์และวางลงสนามรบ</p>
+                <p data-lang="vi">Thu thập bài có kỹ năng khác nhau, trang bị đồ và tham gia chiến đấu.</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="https://picsum.photos/id/176/400/200" alt="Feature" class="feature-img">
+                <h3 data-lang="zh-CN">操作简单，充满策略</h3>
+                <h3 data-lang="zh-TW">操作簡單，充滿策略</h3>
+                <h3 data-lang="en">Simple & Strategic</h3>
+                <h3 data-lang="fr">Simple & Stratégique</h3>
+                <h3 data-lang="de">Einfach & Strategisch</h3>
+                <h3 data-lang="hi">सरल & रणनीतिक</h3>
+                <h3 data-lang="id">Sederhana & Strategis</h3>
+                <h3 data-lang="it">Semplice & Strategico</h3>
+                <h3 data-lang="ja">簡単操作で戦略的</h3>
+                <h3 data-lang="ko">간편하고 전략적</h3>
+                <h3 data-lang="pl">Proste & Strategiczne</h3>
+                <h3 data-lang="pt-BR">Simples & Estratégico</h3>
+                <h3 data-lang="ru">Просто & Стратегически</h3>
+                <h3 data-lang="es">Sencillo & Estratégico</h3>
+                <h3 data-lang="th">ง่ายและมีกลยุทธ์</h3>
+                <h3 data-lang="vi">Đơn giản & Chiến thuật</h3>
+                <p data-lang="zh-CN">拖拽卡牌即可出战，技能卡牌随时逆转战局。</p>
+                <p data-lang="zh-TW">拖曳卡牌即可出戰，技能卡牌隨時逆轉戰局。</p>
+                <p data-lang="en">Drag cards to fight, use skills to turn the tide.</p>
+                <p data-lang="fr">Glissez les cartes pour combattre, utilisez des compétences.</p>
+                <p data-lang="de">Ziehe Karten zum Kämpfen, nutze Fertigkeiten.</p>
+                <p data-lang="hi">कार्ड को घुमाएं, कौशल का उपयोग करें।</p>
+                <p data-lang="id">Seret kartu untuk bertarung, gunakan skill.</p>
+                <p data-lang="it">Trascina le carte per combattere, usa abilità.</p>
+                <p data-lang="ja">カードをドラッグして戦闘、スキルで状況をひっくり返せ。</p>
+                <p data-lang="ko">카드를 드래그해 싸우고 스킬로 상황을 뒤집으세요.</p>
+                <p data-lang="pl">Przeciągnij karty, aby walczyć, użyj umiejętności.</p>
+                <p data-lang="pt-BR">Arraste cartas para lutar, use habilidades.</p>
+                <p data-lang="ru">Перетащите карты, используйте умения.</p>
+                <p data-lang="es">Arrastra cartas para luchar, usa habilidades.</p>
+                <p data-lang="th">ลากการ์ดเพื่อต่อสู้ ใช้สกิลพลิกเกม</p>
+                <p data-lang="vi">Kéo thẻ để chiến đấu, dùng kỹ năng đảo ngược tình thế.</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="https://picsum.photos/id/152/400/200" alt="Feature" class="feature-img">
+                <h3 data-lang="zh-CN">随机地图，肉鸽玩法</h3>
+                <h3 data-lang="zh-TW">隨機地圖，肉鴿玩法</h3>
+                <h3 data-lang="en">Random Maps, Roguelike</h3>
+                <h3 data-lang="fr">Cartes Aléatoires, Roguelike</h3>
+                <h3 data-lang="de">Zufällige Karten, Roguelike</h3>
+                <h3 data-lang="hi">यादृच्छिक मानचित्र, रोगलाइक</h3>
+                <h3 data-lang="id">Peta Acak, Roguelike</h3>
+                <h3 data-lang="it">Mappe Casuali, Roguelike</h3>
+                <h3 data-lang="ja">ランダムマップ、ローグライク</h3>
+                <h3 data-lang="ko">랜덤 맵, 로그라이크</h3>
+                <h3 data-lang="pl">Losowe Mapy, Roguelike</h3>
+                <h3 data-lang="pt-BR">Mapas Aleatórios, Roguelike</h3>
+                <h3 data-lang="ru">Случайные Карты, Roguelike</h3>
+                <h3 data-lang="es">Mapas Aleatorios, Roguelike</h3>
+                <h3 data-lang="th">แผนที่สุ่ม, ร์โอเกอไลค์</h3>
+                <h3 data-lang="vi">Bản đồ ngẫu nhiên, Roguelike</h3>
+                <p data-lang="zh-CN">每一次冒险都不一样，挑战强大BOSS。</p>
+                <p data-lang="zh-TW">每一次冒險都不一樣，挑戰強大BOSS。</p>
+                <p data-lang="en">Every adventure is unique, challenge powerful bosses.</p>
+                <p data-lang="fr">Chaque aventure est unique, affrontez de puissants boss.</p>
+                <p data-lang="de">Jedes Abenteuer ist einzigartig, fordere starke Bosse heraus.</p>
+                <p data-lang="hi">हर साहसिक अनोखा है, मजबूत बॉस को चुनौती दें।</p>
+                <p data-lang="id">Setiap petualangan unik, tantang bos kuat.</p>
+                <p data-lang="it">Ogni avventura è unica, sfida potenti boss.</p>
+                <p data-lang="ja">毎回の冒険が異なり、強敵ボスに挑め。</p>
+                <p data-lang="ko">모든 모험이 독특하며 강력한 보스에 도전하세요.</p>
+                <p data-lang="pl">Każda przygoda jest wyjątkowa, rzuć wyzwanie silnym bossom.</p>
+                <p data-lang="pt-BR">Cada aventura é única, desafie chefes poderosos.</p>
+                <p data-lang="ru">Каждое приключение уникально, бросьте вызов сильным боссам.</p>
+                <p data-lang="es">Cada aventura es única, desafía a jefes poderosos.</p>
+                <p data-lang="th">การผจญภัยแต่ละครั้งไม่เหมือนกัน ท้าทายบอสที่ทรงพลัง</p>
+                <p data-lang="vi">Mỗi chuyến phiêu lưu đều khác nhau, thách thức BOSS hùng mạnh.</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="https://picsum.photos/id/147/400/200" alt="Feature" class="feature-img">
+                <h3 data-lang="zh-CN">怪物装备自由掉落</h3>
+                <h3 data-lang="zh-TW">怪物裝備自由掉落</h3>
+                <h3 data-lang="en">Monster Equipment Drops</h3>
+                <h3 data-lang="fr">Drops d’Équipement</h3>
+                <h3 data-lang="de">Ausrüstungsdrops</h3>
+                <h3 data-lang="hi">उपकरण ड्रॉप</h3>
+                <h3 data-lang="id">Drop Peralatan Monster</h3>
+                <h3 data-lang="it">Drop di Equipaggiamento</h3>
+                <h3 data-lang="ja">モンスター装備ドロップ</h3>
+                <h3 data-lang="ko">몬스터 장비 드롭</h3>
+                <h3 data-lang="pl">Dropy Ekwipunku</h3>
+                <h3 data-lang="pt-BR">Drops de Equipamentos</h3>
+                <h3 data-lang="ru">Дропы Снаряжения</h3>
+                <h3 data-lang="es">Drops de Equipo</h3>
+                <h3 data-lang="th">ดรอปอุปกรณ์จากมอนสเตอร์</h3>
+                <h3 data-lang="vi">Rơi đồ từ quái vật</h3>
+                <p data-lang="zh-CN">击败敌人随机获得装备，高难度地图掉落更强装备。</p>
+                <p data-lang="zh-TW">擊敗敵人隨機獲得裝備，高難度地圖掉落更強裝備。</p>
+                <p data-lang="en">Defeat enemies to get random gear, higher difficulty = better loot.</p>
+                <p data-lang="fr">Vainquez des ennemis pour obtenir de l’équipement.</p>
+                <p data-lang="de">Besiege Feinde, um Ausrüstung zu erhalten.</p>
+                <p data-lang="hi">दुश्मनों को हराकर उपकरण प्राप्त करें।</p>
+                <p data-lang="id">Kalahkan musuh untuk dapatkan peralatan.</p>
+                <p data-lang="it">Sconfiggi i nemici per ottenere equipaggiamento.</p>
+                <p data-lang="ja">敵を倒して装備を入手、高難度ほど良い報酬。</p>
+                <p data-lang="ko">적을 물리치고 장비를 획득하세요.</p>
+                <p data-lang="pl">Pokonaj wrogów, aby zdobyć ekwipunek.</p>
+                <p data-lang="pt-BR">Derrote inimigos para obter equipamentos.</p>
+                <p data-lang="ru">Побеждайте врагов, чтобы получить снаряжение.</p>
+                <p data-lang="es">Derrota enemigos para conseguir equipo.</p>
+                <p data-lang="th">กำจัดศัตรูเพื่อรับอุปกรณ์</p>
+                <p data-lang="vi">Đánh bại kẻ địch để nhận trang bị ngẫu nhiên.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tags -->
+<section class="tags">
+    <div class="container">
+        <h3 data-lang="zh-CN">游戏标签</h3>
+        <h3 data-lang="zh-TW">遊戲標籤</h3>
+        <h3 data-lang="en">Game Tags</h3>
+        <h3 data-lang="fr">Tags du Jeu</h3>
+        <h3 data-lang="de">Spiel-Tags</h3>
+        <h3 data-lang="hi">खेल टैग</h3>
+        <h3 data-lang="id">Tag Game</h3>
+        <h3 data-lang="it">Tag del Gioco</h3>
+        <h3 data-lang="ja">ゲームタグ</h3>
+        <h3 data-lang="ko">게임 태그</h3>
+        <h3 data-lang="pl">Tagi Gry</h3>
+        <h3 data-lang="pt-BR">Tags do Jogo</h3>
+        <h3 data-lang="ru">Теги Игры</h3>
+        <h3 data-lang="es">Tags del Juego</h3>
+        <h3 data-lang="th">แท็กเกม</h3>
+        <h3 data-lang="vi">Thẻ Game</h3>
+
+        <div class="tag-list">
+            <span data-lang="zh-CN" class="tag">卡牌</span>
+            <span data-lang="zh-CN" class="tag">放置</span>
+            <span data-lang="zh-CN" class="tag">平台战斗</span>
+            <span data-lang="zh-CN" class="tag">角色扮演</span>
+            <span data-lang="zh-CN" class="tag">冒险</span>
+            <span data-lang="zh-CN" class="tag">肉鸽</span>
+
+            <span data-lang="zh-TW" class="tag">卡牌</span>
+            <span data-lang="zh-TW" class="tag">放置</span>
+            <span data-lang="zh-TW" class="tag">平台戰鬥</span>
+            <span data-lang="zh-TW" class="tag">角色扮演</span>
+            <span data-lang="zh-TW" class="tag">冒險</span>
+            <span data-lang="zh-TW" class="tag">肉鴿</span>
+
+            <span data-lang="en" class="tag">Cards</span>
+            <span data-lang="en" class="tag">Idle</span>
+            <span data-lang="en" class="tag">Platform Combat</span>
+            <span data-lang="en" class="tag">RPG</span>
+            <span data-lang="en" class="tag">Adventure</span>
+            <span data-lang="en" class="tag">Roguelike</span>
+
+            <span data-lang="fr" class="tag">Cartes</span>
+            <span data-lang="fr" class="tag">Idle</span>
+            <span data-lang="fr" class="tag">Combat</span>
+            <span data-lang="fr" class="tag">RPG</span>
+            <span data-lang="fr" class="tag">Aventure</span>
+            <span data-lang="fr" class="tag">Roguelike</span>
+
+            <span data-lang="de" class="tag">Karten</span>
+            <span data-lang="de" class="tag">Idle</span>
+            <span data-lang="de" class="tag">Kampf</span>
+            <span data-lang="de" class="tag">RPG</span>
+            <span data-lang="de" class="tag">Abenteuer</span>
+            <span data-lang="de" class="tag">Roguelike</span>
+
+            <span data-lang="hi" class="tag">कार्ड</span>
+            <span data-lang="hi" class="tag">आइडल</span>
+            <span data-lang="hi" class="tag">लड़ाई</span>
+            <span data-lang="hi" class="tag">आरपीजी</span>
+            <span data-lang="hi" class="tag">साहसिक</span>
+            <span data-lang="hi" class="tag">रोगलाइक</span>
+
+            <span data-lang="id" class="tag">Kartu</span>
+            <span data-lang="id" class="tag">Idle</span>
+            <span data-lang="id" class="tag">Pertarungan</span>
+            <span data-lang="id" class="tag">RPG</span>
+            <span data-lang="id" class="tag">Petualangan</span>
+            <span data-lang="id" class="tag">Roguelike</span>
+
+            <span data-lang="it" class="tag">Carte</span>
+            <span data-lang="it" class="tag">Idle</span>
+            <span data-lang="it" class="tag">Combattimento</span>
+            <span data-lang="it" class="tag">RPG</span>
+            <span data-lang="it" class="tag">Avventura</span>
+            <span data-lang="it" class="tag">Roguelike</span>
+
+            <span data-lang="ja" class="tag">カード</span>
+            <span data-lang="ja" class="tag">放置</span>
+            <span data-lang="ja" class="tag">バトル</span>
+            <span data-lang="ja" class="tag">RPG</span>
+            <span data-lang="ja" class="tag">冒険</span>
+            <span data-lang="ja" class="tag">ローグライク</span>
+
+            <span data-lang="ko" class="tag">카드</span>
+            <span data-lang="ko" class="tag">방치</span>
+            <span data-lang="ko" class="tag">전투</span>
+            <span data-lang="ko" class="tag">RPG</span>
+            <span data-lang="ko" class="tag">어드벤처</span>
+            <span data-lang="ko" class="tag">로그라이크</span>
+
+            <span data-lang="pl" class="tag">Karty</span>
+            <span data-lang="pl" class="tag">Idle</span>
+            <span data-lang="pl" class="tag">Walka</span>
+            <span data-lang="pl" class="tag">RPG</span>
+            <span data-lang="pl" class="tag">Przygoda</span>
+            <span data-lang="pl" class="tag">Roguelike</span>
+
+            <span data-lang="pt-BR" class="tag">Cartas</span>
+            <span data-lang="pt-BR" class="tag">Idle</span>
+            <span data-lang="pt-BR" class="tag">Combate</span>
+            <span data-lang="pt-BR" class="tag">RPG</span>
+            <span data-lang="pt-BR" class="tag">Aventura</span>
+            <span data-lang="pt-BR" class="tag">Roguelike</span>
+
+            <span data-lang="ru" class="tag">Карты</span>
+            <span data-lang="ru" class="tag">Афк</span>
+            <span data-lang="ru" class="tag">Бои</span>
+            <span data-lang="ru" class="tag">РПГ</span>
+            <span data-lang="ru" class="tag">Приключения</span>
+            <span data-lang="ru" class="tag">Roguelike</span>
+
+            <span data-lang="es" class="tag">Cartas</span>
+            <span data-lang="es" class="tag">Idle</span>
+            <span data-lang="es" class="tag">Combate</span>
+            <span data-lang="es" class="tag">RPG</span>
+            <span data-lang="es" class="tag">Aventura</span>
+            <span data-lang="es" class="tag">Roguelike</span>
+
+            <span data-lang="th" class="tag">การ์ด</span>
+            <span data-lang="th" class="tag">วางไว้</span>
+            <span data-lang="th" class="tag">ต่อสู้</span>
+            <span data-lang="th" class="tag">RPG</span>
+            <span data-lang="th" class="tag">ผจญภัย</span>
+            <span data-lang="th" class="tag">ร์โอเกอไลค์</span>
+
+            <span data-lang="vi" class="tag">Thẻ</span>
+            <span data-lang="vi" class="tag">Nhặt</span>
+            <span data-lang="vi" class="tag">Chiến đấu</span>
+            <span data-lang="vi" class="tag">Nhập vai</span>
+            <span data-lang="vi" class="tag">Phiêu lưu</span>
+            <span data-lang="vi" class="tag">Roguelike</span>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p data-lang="zh-CN">© 2026 荒原特工队 版权所有</p>
+        <p data-lang="zh-TW">© 2026 荒原特工隊 版權所有</p>
+        <p data-lang="en">© 2026 Wasteland Squad All Rights Reserved</p>
+        <p data-lang="fr">© 2026 Escouade Wasteland Tous droits réservés</p>
+        <p data-lang="de">© 2026 Wasteland Kommando Alle Rechte vorbehalten</p>
+        <p data-lang="hi">© 2026 वेस्टलैंड स्क्वाड सर्वाधिकार सुरक्षित</p>
+        <p data-lang="id">© 2026 Pasukan Wasteland Semua hak dilindungi</p>
+        <p data-lang="it">© 2026 Squadra Wasteland Tutti i diritti riservati</p>
+        <p data-lang="ja">© 2026 荒野の戦士 全著作権所有</p>
+        <p data-lang="ko">© 2026 황야 특전대 모든 권리 보유</p>
+        <p data-lang="pl">© 2026 Oddział Wasteland Wszelkie prawa zastrzeżone</p>
+        <p data-lang="pt-BR">© 2026 Esquadrão Wasteland Todos os direitos reservados</p>
+        <p data-lang="ru">© 2026 Отряд Пустоши Все права защищены</p>
+        <p data-lang="es">© 2026 Escuadrón Wasteland Todos los derechos reservados</p>
+        <p data-lang="th">© 2026 หน่วยรบทุ่งร้าง สงวนลิขสิทธิ์</p>
+        <p data-lang="vi">© 2026 Đội Đặc Nhiệm Hoang Dã Bản quyền thuộc về</p>
+
+        <p class="footer-mail">Contact: liuhuan_l_h@163.com</p>
+    </div>
+</footer>
+
+<script>
+    const langSwitch = document.getElementById('langSwitch');
+    const allLang = document.querySelectorAll('[data-lang]');
+
+    function switchLang(lang) {
+        allLang.forEach(el => {
+            el.classList.remove('active');
+            if (el.dataset.lang === lang) el.classList.add('active');
+        });
+        document.documentElement.lang = lang;
+    }
+
+    langSwitch.addEventListener('change', e => switchLang(e.target.value));
+    switchLang('zh-CN');
+</script>
 </body>
 </html>
