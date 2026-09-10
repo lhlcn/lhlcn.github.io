@@ -1,704 +1,299 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>荒原特工队 - Wasteland Squad</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
-        }
+<html lang="zh-CN" data-page-node-id="AgIMRAYclRcEbUTaYH4xFh">
+<head data-page-node-id="GhQEDVG1nYz5UEqkafSMiJ">
+<meta charset="utf-8" data-page-node-id="YOmgL1tpd1BUkAytRCBplM">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" data-page-node-id="4mObQKQl4Y1EL9Wd4gSptL">
+<title>热血百科 · 传奇 | 杀BOSS 爆装备 收集套装</title>
+<meta name="description" content="热血百科 —— 传奇类游戏。杀BOSS、爆装备、收集套装，不用看攻略，进去就是干。" data-page-node-id="1XccZNf6VsEqyrD82713Ey">
+<meta name="keywords" content="热血百科,传奇,复古传奇,杀BOSS,爆装备,套装收集,手游" data-page-node-id="gQYfkDfgieiJqgL9JzIxe6">
+<meta name="theme-color" content="#0a0705" data-page-node-id="zeCJ9vyqNdPhSGEZEJFxs4">
+<meta property="og:type" content="website" data-page-node-id="gieWBNGDof9Qv7TqkIMDLl">
+<meta property="og:title" content="热血百科 · 传奇" data-page-node-id="5JW9QLrcmqDcV0e089WRpe">
+<meta property="og:description" content="杀BOSS、爆装备、收集套装。不用看攻略，进去就是干。" data-page-node-id="kIbu9xFgeyCnYhQVa9uv1Y">
+<meta property="og:url" content="https://lhlcn.github.io/" data-page-node-id="tBCgmdLr3BjDIL8t9kRc2Y">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%230a0705'/%3E%3Cpath d='M32 9l5.2 11.6L50 22l-9 9 2.3 12.8L32 38.2 20.7 43.8 23 31l-9-9 12.8-1.4z' fill='%23f2c24d'/%3E%3C/svg%3E" data-page-node-id="Mdf6NFXJJYHL8oFUQlFoXG">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#0a0705;
+  --gold:#f2c24d; --goldl:#ffe8b0; --goldd:#a4761c;
+  --red:#c8231b;
+  --txt:#f4ead6; --mut:#a3937a; --dim:#7a6c58;
+  --ff:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+html,body{height:100%}
+body{
+  margin:0;background:var(--ink);color:var(--txt);font-family:var(--ff);
+  height:100svh;overflow:hidden;-webkit-font-smoothing:antialiased;
+  line-height:1.6;letter-spacing:.02em;
+}
+img{display:block;max-width:100%}
+h1,h2,h3{margin:0;line-height:1.2}
+p{margin:0}
+::selection{background:rgba(242,194,77,.35)}
 
-        :root {
-            --primary: #4169e1;
-            --secondary: #ff4500;
-            --dark: #0c0f1a;
-            --darker: #070910;
-            --light: #f0f2f5;
-            --text: #e0e5f0;
-            --card-bg: #151a2e;
-            --border: #2a3046;
-        }
+.stage{position:relative;height:100svh;display:flex;flex-direction:column;isolation:isolate;overflow:hidden}
 
-        body {
-            background: var(--darker);
-            color: var(--text);
-            line-height: 1.6;
-            background-image: 
-                linear-gradient(rgba(7,9,16,0.95), rgba(7,9,16,0.98)),
-                url('https://picsum.photos/id/169/1920/1080');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
+/* ---------- 背景 ---------- */
+.bg{position:absolute;inset:0;z-index:-4;
+  background:url("assets/bg_hero.webp") center 34%/cover no-repeat;
+  filter:brightness(1.04) saturate(1.14) contrast(1.05);
+  transform:scale(1.05);animation:breathe 30s ease-in-out infinite alternate}
+@keyframes breathe{from{transform:scale(1.05) translateY(0)}to{transform:scale(1.12) translateY(-12px)}}
+.veil{position:absolute;inset:0;z-index:-3;
+  background:
+    linear-gradient(180deg,rgba(10,7,5,.86) 0%,rgba(10,7,5,.42) 20%,rgba(10,7,5,.30) 50%,rgba(10,7,5,.78) 82%,rgba(10,7,5,.97) 100%),
+    radial-gradient(78% 56% at 50% 36%,rgba(10,7,5,.04),rgba(10,7,5,.52) 100%),
+    radial-gradient(90% 70% at 50% 108%,rgba(200,35,27,.22),transparent 62%)}
+#fx{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,42px)}
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+/* ---------- 顶栏 ---------- */
+.top{flex:none;padding:clamp(14px,2.4vh,26px) 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mk{width:clamp(30px,4vh,36px);aspect-ratio:1;flex:none;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(150deg,#f7d377,#c9882a 52%,#7d4f14);color:#2a1a05;
+  font-size:calc(clamp(30px,4vh,36px)*.5);font-weight:900;
+  box-shadow:0 0 0 1px rgba(255,225,160,.42),0 6px 20px -6px rgba(242,194,77,.75)}
+.brand b{display:block;font-size:clamp(15px,1.9vh,18px);font-weight:900;letter-spacing:.1em;line-height:1.2;
+  background:linear-gradient(180deg,#fff5dc,#f0bd45);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand small{display:block;font-size:clamp(8.5px,.95vh,10px);color:var(--dim);letter-spacing:.34em;font-weight:700}
+.tlink{font-size:clamp(12px,1.5vh,13.5px);font-weight:700;color:var(--mut);border:1px solid rgba(242,194,77,.28);
+  padding:clamp(6px,1vh,9px) clamp(13px,1.6vw,18px);border-radius:999px;text-decoration:none;transition:.25s;white-space:nowrap}
+.tlink:hover{color:#2a1a05;background:linear-gradient(120deg,#ffd97a,#e0a52e);border-color:transparent}
 
-        /* Header */
-        header {
-            background: rgba(12,15,26,0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-        .header-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 75px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary);
-            text-shadow: 0 0 12px rgba(65,105,225,0.4);
-            letter-spacing: 1px;
-        }
-        .lang-select {
-            padding: 8px 14px;
-            background: var(--card-bg);
-            color: var(--text);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            outline: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .lang-select:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 8px rgba(65,105,225,0.2);
-        }
+/* ---------- 主区 ---------- */
+.main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(6px,1.6vh,20px) 0;gap:clamp(16px,3.8vh,48px)}
+.head{text-align:center}
+.deco{display:flex;align-items:center;justify-content:center;gap:clamp(9px,1.4vw,15px);margin-bottom:clamp(6px,1.4vh,14px)}
+.deco i{display:block;height:1px;width:clamp(34px,8vw,110px);
+  background:linear-gradient(90deg,transparent,rgba(242,194,77,.85))}
+.deco i:last-child{background:linear-gradient(270deg,transparent,rgba(242,194,77,.85))}
+.deco em{font-style:normal;font-size:clamp(8px,.9vh,10px);color:var(--gold);letter-spacing:.42em;font-weight:800;
+  text-indent:.42em;white-space:nowrap}
+h1{font-size:clamp(42px,7.6vw,96px);font-weight:900;letter-spacing:.08em;text-indent:.08em;
+  background:linear-gradient(180deg,#fff9e8 0%,#ffdf95 32%,#e9ac33 60%,#956717 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 14px rgba(242,194,77,.34)) drop-shadow(0 0 46px rgba(255,132,32,.30))}
+.sub{margin-top:clamp(9px,1.6vh,18px);font-size:clamp(14px,2.1vh,20px);font-weight:700;letter-spacing:.16em;
+  color:#ffe0a5;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.sub b{color:#fff;font-weight:900}
+.sub .sep{color:var(--gold);margin:0 clamp(5px,.8vw,10px);font-weight:400;opacity:.75}
 
-        /* Hero */
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(135deg, #1e2958, #0f1429);
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('https://picsum.photos/id/168/1920/1080') center/cover;
-            opacity: 0.15;
-            z-index: 0;
-        }
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(65,105,225,0.4);
-            font-weight: 800;
-        }
-        .hero p {
-            font-size: 19px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.92;
-        }
-        .hero-img {
-            max-width: 720px;
-            width: 100%;
-            margin-top: 20px;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            border: 1px solid var(--border);
-        }
+/* ---------- 三张卡 ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(11px,1.5vw,20px)}
+.card{position:relative;border:1px solid rgba(242,194,77,.24);border-radius:16px;overflow:hidden;
+  background:linear-gradient(168deg,rgba(46,32,17,.86),rgba(12,9,6,.92));
+  backdrop-filter:blur(6px);padding:clamp(10px,1.5vh,16px);transition:.32s;
+  box-shadow:0 18px 44px -22px rgba(0,0,0,.95)}
+.card::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;
+  background:linear-gradient(160deg,rgba(255,214,122,.14),transparent 46%);opacity:0;transition:.32s}
+.card:hover{transform:translateY(-5px);border-color:rgba(242,194,77,.62);
+  box-shadow:0 24px 56px -22px rgba(0,0,0,1),0 0 0 1px rgba(242,194,77,.18),0 0 44px -12px rgba(242,194,77,.42)}
+.card:hover::after{opacity:1}
+.card .ph{position:relative;border-radius:11px;overflow:hidden;
+  height:clamp(112px,21vh,224px);border:1px solid rgba(242,194,77,.18)}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,7,5,0) 48%,rgba(10,7,5,.72) 100%)}
+.num{position:absolute;top:8px;left:9px;z-index:2;font-size:clamp(9px,.95vh,11px);font-weight:900;letter-spacing:.14em;
+  color:#2a1a05;background:linear-gradient(120deg,#ffd97a,#dda42c);padding:2px 8px;border-radius:6px}
+.card h3{margin:clamp(9px,1.5vh,15px) 0 clamp(4px,.8vh,8px);font-size:clamp(16px,2.3vh,21px);font-weight:900;
+  letter-spacing:.06em;
+  background:linear-gradient(180deg,#fff3d6,#f0c04a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card p{font-size:clamp(12px,1.62vh,14.5px);color:#c3b49a;line-height:1.72}
+.card p em{font-style:normal;color:#ffd77a;font-weight:800}
 
-        /* Features */
-        .features {
-            padding: 80px 0;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
-            color: #fff;
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(65,105,225,0.3);
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        .feature-card {
-            background: var(--card-bg);
-            padding: 32px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: 0.35s;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-        }
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-        .feature-card h3 {
-            color: #fff;
-            margin-bottom: 14px;
-            font-size: 21px;
-            font-weight: 600;
-        }
-        .feature-img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-        }
+/* ---------- 底部 ---------- */
+.bot{flex:none;padding:clamp(12px,2vh,24px) 0 clamp(14px,2.4vh,28px);text-align:center}
+.bot .wrap{display:flex;flex-direction:column;align-items:center;gap:clamp(7px,1.2vh,13px)}
+.mail{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:inherit;
+  font-size:clamp(13px,1.8vh,16px);font-weight:800;letter-spacing:.04em;
+  padding:clamp(9px,1.5vh,13px) clamp(18px,2.6vw,30px);border-radius:999px;
+  border:1px solid rgba(242,194,77,.45);color:#ffe0a5;
+  background:linear-gradient(140deg,rgba(242,194,77,.14),rgba(200,35,27,.10));transition:.26s;white-space:nowrap}
+.mail:hover{color:#2a1a05;background:linear-gradient(120deg,#ffd97a,#e0a52e);border-color:transparent;transform:translateY(-2px)}
+.mail svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hint{font-size:clamp(10.5px,1.3vh,12px);color:var(--dim);letter-spacing:.1em;min-height:1.2em}
+.copy{font-size:clamp(10px,1.28vh,12px);color:#5f5342;letter-spacing:.08em;line-height:1.7;max-width:760px}
+.copy a{color:#7d6f59;text-decoration:none;border-bottom:1px solid rgba(125,111,89,.4)}
+.copy a:hover{color:var(--gold);border-bottom-color:rgba(242,194,77,.6)}
 
-        /* Tags */
-        .tags {
-            padding: 50px 0;
-            text-align: center;
-            background: var(--dark);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .tags h3 {
-            font-size: 24px;
-            margin-bottom: 25px;
-            color: #fff;
-        }
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-        }
-        .tag {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, var(--primary), #3553b4);
-            color: white;
-            border-radius: 50px;
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(65,105,225,0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--darker);
-            color: #a0a8c0;
-            text-align: center;
-            padding: 50px 0;
-            margin-top: 30px;
-            border-top: 1px solid var(--border);
-        }
-        .footer-mail {
-            margin-top: 14px;
-            font-size: 16px;
-            color: #707a9a;
-        }
-
-        /* Responsive */
-        @media (max-width:768px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 {
-                font-size: 28px;
-            }
-            .section-title {
-                font-size: 26px;
-            }
-        }
-
-        [data-lang] {
-            display: none;
-        }
-        [data-lang].active {
-            display: block;
-        }
-    </style>
+@media (max-width:760px){
+  .cards{grid-template-columns:1fr;gap:clamp(8px,1.2vh,12px)}
+  .card{display:flex;align-items:center;gap:clamp(11px,3vw,15px);padding:clamp(8px,1.2vh,11px)}
+  .card .ph{width:clamp(74px,20vw,92px);height:clamp(74px,20vw,92px);flex:none}
+  .card .ph::after{display:none}
+  .num{top:5px;left:5px;padding:1px 6px;font-size:9px}
+  .card h3{margin:0 0 3px;font-size:clamp(15px,4.2vw,17px)}
+  .tx{min-width:0}
+}
+@media (max-width:400px){
+  .card p{font-size:11.5px;line-height:1.6}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
 </head>
-<body>
+<body data-page-node-id="uPaDEa60D1dRRvhfmFuUoR">
 
-<!-- Header -->
-<header>
-    <div class="container header-wrap">
-        <div class="logo" data-lang="zh-CN">荒原特工队</div>
-        <div class="logo" data-lang="zh-TW">荒原特工隊</div>
-        <div class="logo" data-lang="en">Wasteland Squad</div>
-        <div class="logo" data-lang="fr">Escouade Wasteland</div>
-        <div class="logo" data-lang="de">Wasteland Kommando</div>
-        <div class="logo" data-lang="hi">वेस्टलैंड स्क्वाड</div>
-        <div class="logo" data-lang="id">Pasukan Wasteland</div>
-        <div class="logo" data-lang="it">Squadra Wasteland</div>
-        <div class="logo" data-lang="ja">荒野の戦士</div>
-        <div class="logo" data-lang="ko">황야 특전대</div>
-        <div class="logo" data-lang="pl">Oddział Wasteland</div>
-        <div class="logo" data-lang="pt-BR">Esquadrão Wasteland</div>
-        <div class="logo" data-lang="ru">Отряд Пустоши</div>
-        <div class="logo" data-lang="es">Escuadrón Wasteland</div>
-        <div class="logo" data-lang="th">หน่วยรบทุ่งร้าง</div>
-        <div class="logo" data-lang="vi">Đội Đặc Nhiệm Hoang Dã</div>
+<div class="stage" data-page-node-id="0qINXx9hwJUBQPuiq0eECM">
+  <div class="bg" aria-hidden="true" data-page-node-id="DB8cL1KJ1l3AmCEtuWUvF1"></div>
+  <div class="veil" aria-hidden="true" data-page-node-id="1MEqTg5A9UOQL4M1QKYbqw"></div>
+  <canvas id="fx" aria-hidden="true" data-page-node-id="K8K62MvPnKqOgRG64Rjpuf"></canvas>
 
-        <select class="lang-select" id="langSwitch">
-            <option value="zh-CN">简体中文</option>
-            <option value="zh-TW">繁體中文</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="hi">Hindi</option>
-            <option value="id">Bahasa Indonesia</option>
-            <option value="it">Italiano</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-            <option value="pl">Polski</option>
-            <option value="pt-BR">Português (Brasil)</option>
-            <option value="ru">Русский</option>
-            <option value="es">Español</option>
-            <option value="th">ภาษาไทย</option>
-            <option value="vi">Tiếng Việt</option>
-        </select>
+  <header class="top" data-page-node-id="HLNQvRU1VA7iTMbCH0ufYi">
+    <div class="wrap" data-page-node-id="KnuhIbBJevmhHLXDDivkYq">
+      <div class="brand" data-page-node-id="C1Je7yR5lCxJdHEcw69JBF">
+        <span class="mk" data-page-node-id="qQQsVVmHFqLg10mJeCCELr">热</span>
+        <span data-page-node-id="F8Fum6dDgrYMyClxMKpX4p"><b data-page-node-id="LIp9bbMS1poZH9Mh6S5bNi">热血百科</b><small data-page-node-id="yDVIY5x7QrA2mlj8RTRIiL">REXUE PEDIA</small></span>
+      </div>
+      <a class="tlink" href="#contact" data-page-node-id="LTcApFan90MlDCEobLUsre">联系合作</a>
     </div>
-</header>
+  </header>
 
-<!-- Hero -->
-<section class="hero">
-    <div class="container">
-        <div data-lang="zh-CN" class="active">
-            <h1>荒原特工队</h1>
-            <p>收集佣兵卡牌，集结3人小队，与强大恶魔军团战斗！操作简单，玩法丰富，随机地图，装备自由掉落！</p>
-        </div>
-        <div data-lang="zh-TW">
-            <h1>荒原特工隊</h1>
-            <p>收集傭兵卡牌，集結3人小隊，與強大惡魔軍團戰鬥！操作簡單，玩法豐富，隨機地圖，裝備自由掉落！</p>
-        </div>
-        <div data-lang="en">
-            <h1>Wasteland Squad</h1>
-            <p>Collect mercenary cards, assemble a 3-character team, and fight the powerful demon army! Simple controls, rich gameplay, random maps, and free equipment drops!</p>
-        </div>
-        <div data-lang="fr">
-            <h1>Escouade Wasteland</h1>
-            <p>Collectez des cartes de mercenaires, formez une équipe de 3 personnages et combattez la puissante armée de démons !</p>
-        </div>
-        <div data-lang="de">
-            <h1>Wasteland Kommando</h1>
-            <p>Sammle Söldnerkarten, stelle ein 3-köpfiges Team zusammen und kämpfe gegen die mächtige Dämonenarmee!</p>
-        </div>
-        <div data-lang="hi">
-            <h1>वेस्टलैंड स्क्वाड</h1>
-            <p>भाड़े के कर्मचारी कार्ड एकत्र करें, 3-चरित्र टीम इकट्ठा करें, और शक्तिशाली राक्षस सेना से लड़ें!</p>
-        </div>
-        <div data-lang="id">
-            <h1>Pasukan Wasteland</h1>
-            <p>Kumpulkan kartu tentara bayaran, bentuk tim 3 orang, dan lawan pasukan iblis yang kuat!</p>
-        </div>
-        <div data-lang="it">
-            <h1>Squadra Wasteland</h1>
-            <p>Colleziona carte di mercenari, forma una squadra di 3 personaggi e combatti contro il potente esercito di demoni!</p>
-        </div>
-        <div data-lang="ja">
-            <h1>荒野の戦士</h1>
-            <p>傭兵カードを集めて3人チームを編成し、強力な悪魔軍団と戦おう！</p>
-        </div>
-        <div data-lang="ko">
-            <h1>황야 특전대</h1>
-            <p>용병 카드를 모아 3인 팀을 구성하고 강력한 악마 군단과 싸우세요!</p>
-        </div>
-        <div data-lang="pl">
-            <h1>Oddział Wasteland</h1>
-            <p>Zbieraj karty najemników, składaj 3-osobową drużynę i walcz z potężną armią demonów!</p>
-        </div>
-        <div data-lang="pt-BR">
-            <h1>Esquadrão Wasteland</h1>
-            <p>Colete cartas de mercenários, monte um time de 3 personagens e lute contra o poderoso exército de demônios!</p>
-        </div>
-        <div data-lang="ru">
-            <h1>Отряд Пустоши</h1>
-            <p>Собирайте карты наемников, формируйте команду из 3 персонажей и сражайтесь с могучей армией демонов!</p>
-        </div>
-        <div data-lang="es">
-            <h1>Escuadrón Wasteland</h1>
-            <p>Colecciona cartas de mercenarios, forma un equipo de 3 personajes y lucha contra el poderoso ejército de demonios.</p>
-        </div>
-        <div data-lang="th">
-            <h1>หน่วยรบทุ่งร้าง</h1>
-            <p>สะสมการ์ดพวกเช่า กลุ่มทีม 3 ตัวละคร ต่อสู้กับกองทัพปีศาจที่ทรงพลัง!</p>
-        </div>
-        <div data-lang="vi">
-            <h1>Đội Đặc Nhiệm Hoang Dã</h1>
-            <p>Thu thập bài lính thuê, lập đội 3 người và chiến đấu với quân đội ma quỷ hùng mạnh!</p>
-        </div>
-
-        <img src="https://picsum.photos/id/168/1200/500" alt="荒原特工队游戏封面" class="hero-img">
+  <main class="main" data-page-node-id="nDhU8f9HrKbyFfDj3nRjAN">
+    <div class="wrap" data-page-node-id="WsN6ehmNgw5Vdh2CBbQFZk">
+      <div class="head" data-page-node-id="8XRRoIo2LPCrqS2pfn0e74">
+        <div class="deco" data-page-node-id="UROzDFJqzCDEGxuDrBlSOW"><i data-page-node-id="8DynuJHcF1aXoaxHYbfSpO"></i><em data-page-node-id="d3aIWkQiFUCz5d96r1bAGG">传奇 · 就玩这个</em><i data-page-node-id="Te3tZH30w0MnZxCJKzHBPy"></i></div>
+        <h1 data-page-node-id="F8TiTs1VdqFGD2e2NhY2z1">热血百科</h1>
+        <p class="sub" data-page-node-id="0gi4JyuVytikPwFcfjgfEZ">杀 <b data-page-node-id="VWTiVtW29A4sFfYEzqKfGW">BOSS</b><span class="sep" data-page-node-id="jEAjBvIFMm19TTOeErnLzX">·</span>爆 <b data-page-node-id="XP0paymHbXsoqioNfjnttV">装备</b><span class="sep" data-page-node-id="OEMc1KEfrjDmxHvX8I8l1l">·</span>收集 <b data-page-node-id="qrpJ1ZlZehXX32imf2eIXf">套装</b></p>
+      </div>
     </div>
-</section>
 
-<!-- Features -->
-<section class="features">
-    <div class="container">
-        <h2 class="section-title" data-lang="zh-CN">游戏特色</h2>
-        <h2 class="section-title" data-lang="zh-TW">遊戲特色</h2>
-        <h2 class="section-title" data-lang="en">Game Features</h2>
-        <h2 class="section-title" data-lang="fr">Caractéristiques du Jeu</h2>
-        <h2 class="section-title" data-lang="de">Spieleigenschaften</h2>
-        <h2 class="section-title" data-lang="hi">खेल की विशेषताएं</h2>
-        <h2 class="section-title" data-lang="id">Fitur Game</h2>
-        <h2 class="section-title" data-lang="it">Caratteristiche del Gioco</h2>
-        <h2 class="section-title" data-lang="ja">ゲーム特徴</h2>
-        <h2 class="section-title" data-lang="ko">게임 특징</h2>
-        <h2 class="section-title" data-lang="pl">Cechy Gry</h2>
-        <h2 class="section-title" data-lang="pt-BR">Características do Jogo</h2>
-        <h2 class="section-title" data-lang="ru">Особенности игры</h2>
-        <h2 class="section-title" data-lang="es">Características del Juego</h2>
-        <h2 class="section-title" data-lang="th">จุดเด่นของเกม</h2>
-        <h2 class="section-title" data-lang="vi">Đặc Trưng Game</h2>
+    <div class="wrap" data-page-node-id="xlptKRjjEdyZP4BquKA0zI">
+      <div class="cards" data-page-node-id="6ZvpCe4xOPhKpGr9kGBG6C">
 
-        <div class="feature-grid">
-            <div class="feature-card">
-                <img src="https://picsum.photos/id/160/400/200" alt="游戏特色" class="feature-img">
-                <h3 data-lang="zh-CN">卡牌收集 + 平台放置战斗</h3>
-                <h3 data-lang="zh-TW">卡牌收集＋平台放置戰鬥</h3>
-                <h3 data-lang="en">Card Collection + Platform Combat</h3>
-                <h3 data-lang="fr">Collection de cartes + Combat en Plateforme</h3>
-                <h3 data-lang="de">Kartensammeln + Plattformkampf</h3>
-                <h3 data-lang="hi">कार्ड संग्रह + प्लेटफॉर्म लड़ाई</h3>
-                <h3 data-lang="id">Koleksi Kartu + Pertarungan Platform</h3>
-                <h3 data-lang="it">Collezione di Carte + Combattimento in Piattaforma</h3>
-                <h3 data-lang="ja">カード収集＋プラットフォームバトル</h3>
-                <h3 data-lang="ko">카드 수집 + 플랫폼 전투</h3>
-                <h3 data-lang="pl">Kolekcjonowanie Kart + Walki Platformowe</h3>
-                <h3 data-lang="pt-BR">Coleção de Cartas + Combate em Plataforma</h3>
-                <h3 data-lang="ru">Сбор карт + Платформенные бои</h3>
-                <h3 data-lang="es">Colección de Cartas + Combate en Plataforma</h3>
-                <h3 data-lang="th">สะสมการ์ด + ต่อสู้บนแพลตฟอร์ม</h3>
-                <h3 data-lang="vi">Thu thập bài + Chiến đấu nền tảng</h3>
-                <p data-lang="zh-CN">收集不同技能卡牌，搭配装备，部署战场自动战斗。</p>
-                <p data-lang="zh-TW">收集不同技能卡牌，搭配裝備，部署戰場自動戰鬥。</p>
-                <p data-lang="en">Collect cards with various skills, equip gear, and deploy to battle.</p>
-                <p data-lang="fr">Collectez des cartes aux compétences variées, équipez des équipements.</p>
-                <p data-lang="de">Sammle Karten mit verschiedenen Fähigkeiten und rüste sie aus.</p>
-                <p data-lang="hi">विभिन्न कौशल कार्ड एकत्र करें, गियर लगाएं।</p>
-                <p data-lang="id">Kumpulkan kartu dengan skill berbeda, lengkapi peralatan.</p>
-                <p data-lang="it">Colleziona carte con abilità diverse e equipaggiale.</p>
-                <p data-lang="ja">様々なスキルカードを集め、装備を組み合わせて戦場へ。</p>
-                <p data-lang="ko">다양한 스킬 카드를 모아 장비를 착용시키고 전투에 투입하세요.</p>
-                <p data-lang="pl">Zbieraj karty z różnymi umiejętnościami i wyposażaj je.</p>
-                <p data-lang="pt-BR">Colete cartas com várias habilidades e equipe equipamentos.</p>
-                <p data-lang="ru">Собирайте карты с разными умениями и снаряжайте их.</p>
-                <p data-lang="es">Colecciona cartas con distintas habilidades y equípalas.</p>
-                <p data-lang="th">สะสมการ์ดสกิลต่างๆ อัพเกรดอุปกรณ์และวางลงสนามรบ</p>
-                <p data-lang="vi">Thu thập bài có kỹ năng khác nhau, trang bị đồ và tham gia chiến đấu.</p>
-            </div>
+        <article class="card" data-page-node-id="D8NA2uJX26uKXgrMEfWRAl">
+          <div class="ph" data-page-node-id="5ncAPuqFFXMvVtpwRNcUEF">
+            <span class="num" data-page-node-id="sgY0tDJFGp1pDldlsQFgod">01</span>
+            <img src="assets/feat_boss.webp" alt="杀BOSS 地图霸主" data-page-node-id="KBBpDwwTPvk6p9eKRl0E6e">
+          </div>
+          <div class="tx" data-page-node-id="DT3O7Bvs7EIycnSlbyCFNJ">
+            <h3 data-page-node-id="3XEXGSVBepBb9IyuGmHhml">杀 BOSS</h3>
+            <p data-page-node-id="Zgvni1VzL3sVvKGhcdWKO9">一张图养一个霸主，砍翻它才算真的通关。打不过就回头换身行头，<em data-page-node-id="KjklVrt6C8W9ErxkGyjm9q">回来继续砍</em>。</p>
+          </div>
+        </article>
 
-            <div class="feature-card">
-                <img src="https://picsum.photos/id/176/400/200" alt="游戏特色" class="feature-img">
-                <h3 data-lang="zh-CN">操作简单，充满策略</h3>
-                <h3 data-lang="zh-TW">操作簡單，充滿策略</h3>
-                <h3 data-lang="en">Simple & Strategic</h3>
-                <h3 data-lang="fr">Simple & Stratégique</h3>
-                <h3 data-lang="de">Einfach & Strategisch</h3>
-                <h3 data-lang="hi">सरल & रणनीतिक</h3>
-                <h3 data-lang="id">Sederhana & Strategis</h3>
-                <h3 data-lang="it">Semplice & Strategico</h3>
-                <h3 data-lang="ja">簡単操作で戦略的</h3>
-                <h3 data-lang="ko">간편하고 전략적</h3>
-                <h3 data-lang="pl">Proste & Strategiczne</h3>
-                <h3 data-lang="pt-BR">Simples & Estratégico</h3>
-                <h3 data-lang="ru">Просто & Стратегически</h3>
-                <h3 data-lang="es">Sencillo & Estratégico</h3>
-                <h3 data-lang="th">ง่ายและมีกลยุทธ์</h3>
-                <h3 data-lang="vi">Đơn giản & Chiến thuật</h3>
-                <p data-lang="zh-CN">拖拽卡牌即可出战，技能卡牌随时逆转战局。</p>
-                <p data-lang="zh-TW">拖曳卡牌即可出戰，技能卡牌隨時逆轉戰局。</p>
-                <p data-lang="en">Drag cards to fight, use skills to turn the tide.</p>
-                <p data-lang="fr">Glissez les cartes pour combattre, utilisez des compétences.</p>
-                <p data-lang="de">Ziehe Karten zum Kämpfen, nutze Fertigkeiten.</p>
-                <p data-lang="hi">कार्ड को घुमाएं, कौशल का उपयोग करें।</p>
-                <p data-lang="id">Seret kartu untuk bertarung, gunakan skill.</p>
-                <p data-lang="it">Trascina le carte per combattere, usa abilità.</p>
-                <p data-lang="ja">カードをドラッグして戦闘、スキルで状況をひっくり返せ。</p>
-                <p data-lang="ko">카드를 드래그해 싸우고 스킬로 상황을 뒤집으세요.</p>
-                <p data-lang="pl">Przeciągnij karty, aby walczyć, użyj umiejętności.</p>
-                <p data-lang="pt-BR">Arraste cartas para lutar, use habilidades.</p>
-                <p data-lang="ru">Перетащите карты, используйте умения.</p>
-                <p data-lang="es">Arrastra cartas para luchar, usa habilidades.</p>
-                <p data-lang="th">ลากการ์ดเพื่อต่อสู้ ใช้สกิลพลิกเกม</p>
-                <p data-lang="vi">Kéo thẻ để chiến đấu, dùng kỹ năng đảo ngược tình thế.</p>
-            </div>
+        <article class="card" data-page-node-id="2jWot8js5zdUgn1L1oFpKx">
+          <div class="ph" data-page-node-id="QYLJA7YsXgNEblICOyQ6kx">
+            <span class="num" data-page-node-id="Jf3BacWoCUH4fGU02CMAe8">02</span>
+            <img src="assets/feat_loot.webp" alt="爆装备 满地金光" data-page-node-id="ldOqjgXz3iScWlXFudatx9">
+          </div>
+          <div class="tx" data-page-node-id="5QyjWPK1WSVmeuKR9iGMYR">
+            <h3 data-page-node-id="knvYvIqrrxxBxKuiuPH1uD">爆装备</h3>
+            <p data-page-node-id="gqKDCnrM6ESIDpQA6HoDRR">砍死就掉，<em data-page-node-id="ESaigbIkf03bA4h9RHcFNT">满地金光</em>。刀、甲、戒、链全看爆，运气来的那一把，一件顶三件。</p>
+          </div>
+        </article>
 
-            <div class="feature-card">
-                <img src="https://picsum.photos/id/152/400/200" alt="游戏特色" class="feature-img">
-                <h3 data-lang="zh-CN">随机地图，肉鸽玩法</h3>
-                <h3 data-lang="zh-TW">隨機地圖，肉鴿玩法</h3>
-                <h3 data-lang="en">Random Maps, Roguelike</h3>
-                <h3 data-lang="fr">Cartes Aléatoires, Roguelike</h3>
-                <h3 data-lang="de">Zufällige Karten, Roguelike</h3>
-                <h3 data-lang="hi">यादृच्छिक मानचित्र, रोगलाइक</h3>
-                <h3 data-lang="id">Peta Acak, Roguelike</h3>
-                <h3 data-lang="it">Mappe Casuali, Roguelike</h3>
-                <h3 data-lang="ja">ランダムマップ、ローグライク</h3>
-                <h3 data-lang="ko">랜덤 맵, 로그라이크</h3>
-                <h3 data-lang="pl">Losowe Mapy, Roguelike</h3>
-                <h3 data-lang="pt-BR">Mapas Aleatórios, Roguelike</h3>
-                <h3 data-lang="ru">Случайные Карты, Roguelike</h3>
-                <h3 data-lang="es">Mapas Aleatorios, Roguelike</h3>
-                <h3 data-lang="th">แผนที่สุ่ม, ร์โอเกอไลค์</h3>
-                <h3 data-lang="vi">Bản đồ ngẫu nhiên, Roguelike</h3>
-                <p data-lang="zh-CN">每一次冒险都不一样，挑战强大BOSS。</p>
-                <p data-lang="zh-TW">每一次冒險都不一樣，挑戰強大BOSS。</p>
-                <p data-lang="en">Every adventure is unique, challenge powerful bosses.</p>
-                <p data-lang="fr">Chaque aventure est unique, affrontez de puissants boss.</p>
-                <p data-lang="de">Jedes Abenteuer ist einzigartig, fordere starke Bosse heraus.</p>
-                <p data-lang="hi">हर साहसिक अनोखा है, मजबूत बॉस को चुनौती दें।</p>
-                <p data-lang="id">Setiap petualangan unik, tantang bos kuat.</p>
-                <p data-lang="it">Ogni avventura è unica, sfida potenti boss.</p>
-                <p data-lang="ja">毎回の冒険が異なり、強敵ボスに挑め。</p>
-                <p data-lang="ko">모든 모험이 독특하며 강력한 보스에 도전하세요.</p>
-                <p data-lang="pl">Każda przygoda jest wyjątkowa, rzuć wyzwanie silnym bossom.</p>
-                <p data-lang="pt-BR">Cada aventura é única, desafie chefes poderosos.</p>
-                <p data-lang="ru">Каждое приключение уникально, бросьте вызов сильным боссам.</p>
-                <p data-lang="es">Cada aventura es única, desafía a jefes poderosos.</p>
-                <p data-lang="th">การผจญภัยแต่ละครั้งไม่เหมือนกัน ท้าทายบอสที่ทรงพลัง</p>
-                <p data-lang="vi">Mỗi chuyến phiêu lưu đều khác nhau, thách thức BOSS hùng mạnh.</p>
-            </div>
+        <article class="card" data-page-node-id="VAE7mvyyeGBJlNjPkyF3py">
+          <div class="ph" data-page-node-id="3WsGhTBtiPvpij1pezfWbk">
+            <span class="num" data-page-node-id="lzTZzNaBnUv9HODUgAVQ89">03</span>
+            <img src="assets/feat_set.webp" alt="收集套装 属性脱胎换骨" data-page-node-id="bzaiOZsE3A6oCTAUDo0M5a">
+          </div>
+          <div class="tx" data-page-node-id="Zax114wvd2uAXO1uIxSnnp">
+            <h3 data-page-node-id="sh2HC5iepy7qXp5lNlGgv1">收集套装</h3>
+            <p data-page-node-id="vywl40i1BdmHeMXvvkQjI6">散件凑齐一套，<em data-page-node-id="gqJwwpVXTPBzKoRZ5w8nNj">属性直接脱胎换骨</em>。收集党最上头的，就是穿上那一刻。</p>
+          </div>
+        </article>
 
-            <div class="feature-card">
-                <img src="https://picsum.photos/id/147/400/200" alt="游戏特色" class="feature-img">
-                <h3 data-lang="zh-CN">怪物装备自由掉落</h3>
-                <h3 data-lang="zh-TW">怪物裝備自由掉落</h3>
-                <h3 data-lang="en">Monster Equipment Drops</h3>
-                <h3 data-lang="fr">Drops d’Équipement</h3>
-                <h3 data-lang="de">Ausrüstungsdrops</h3>
-                <h3 data-lang="hi">उपकरण ड्रॉप</h3>
-                <h3 data-lang="id">Drop Peralatan Monster</h3>
-                <h3 data-lang="it">Drop di Equipaggiamento</h3>
-                <h3 data-lang="ja">モンスター装備ドロップ</h3>
-                <h3 data-lang="ko">몬스터 장비 드롭</h3>
-                <h3 data-lang="pl">Dropy Ekwipunku</h3>
-                <h3 data-lang="pt-BR">Drops de Equipamentos</h3>
-                <h3 data-lang="ru">Дропы Снаряжения</h3>
-                <h3 data-lang="es">Drops de Equipo</h3>
-                <h3 data-lang="th">ดรอปอุปกรณ์จากมอนสเตอร์</h3>
-                <h3 data-lang="vi">Rơi đồ từ quái vật</h3>
-                <p data-lang="zh-CN">击败敌人随机获得装备，高难度地图掉落更强装备。</p>
-                <p data-lang="zh-TW">擊敗敵人隨機獲得裝備，高難度地圖掉落更強裝備。</p>
-                <p data-lang="en">Defeat enemies to get random gear, higher difficulty = better loot.</p>
-                <p data-lang="fr">Vainquez des ennemis pour obtenir de l’équipement.</p>
-                <p data-lang="de">Besiege Feinde, um Ausrüstung zu erhalten.</p>
-                <p data-lang="hi">दुश्मनों को हराकर उपकरण प्राप्त करें।</p>
-                <p data-lang="id">Kalahkan musuh untuk dapatkan peralatan.</p>
-                <p data-lang="it">Sconfiggi i nemici per ottenere equipaggiamento.</p>
-                <p data-lang="ja">敵を倒して装備を入手、高難度ほど良い報酬。</p>
-                <p data-lang="ko">적을 물리치고 장비를 획득하세요.</p>
-                <p data-lang="pl">Pokonaj wrogów, aby zdobyć ekwipunek.</p>
-                <p data-lang="pt-BR">Derrote inimigos para obter equipamentos.</p>
-                <p data-lang="ru">Побеждайте врагов, чтобы получить снаряжение.</p>
-                <p data-lang="es">Derrota enemigos para conseguir equipo.</p>
-                <p data-lang="th">กำจัดศัตรูเพื่อรับอุปกรณ์</p>
-                <p data-lang="vi">Đánh bại kẻ địch để nhận trang bị ngẫu nhiên.</p>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
+  </main>
 
-<!-- Tags -->
-<section class="tags">
-    <div class="container">
-        <h3 data-lang="zh-CN">游戏标签</h3>
-        <h3 data-lang="zh-TW">遊戲標籤</h3>
-        <h3 data-lang="en">Game Tags</h3>
-        <h3 data-lang="fr">Tags du Jeu</h3>
-        <h3 data-lang="de">Spiel-Tags</h3>
-        <h3 data-lang="hi">खेल टैग</h3>
-        <h3 data-lang="id">Tag Game</h3>
-        <h3 data-lang="it">Tag del Gioco</h3>
-        <h3 data-lang="ja">ゲームタグ</h3>
-        <h3 data-lang="ko">게임 태그</h3>
-        <h3 data-lang="pl">Tagi Gry</h3>
-        <h3 data-lang="pt-BR">Tags do Jogo</h3>
-        <h3 data-lang="ru">Теги Игры</h3>
-        <h3 data-lang="es">Tags del Juego</h3>
-        <h3 data-lang="th">แท็กเกม</h3>
-        <h3 data-lang="vi">Thẻ Game</h3>
-
-        <div class="tag-list">
-            <span data-lang="zh-CN" class="tag">卡牌</span>
-            <span data-lang="zh-CN" class="tag">放置</span>
-            <span data-lang="zh-CN" class="tag">平台战斗</span>
-            <span data-lang="zh-CN" class="tag">角色扮演</span>
-            <span data-lang="zh-CN" class="tag">冒险</span>
-            <span data-lang="zh-CN" class="tag">肉鸽</span>
-
-            <span data-lang="zh-TW" class="tag">卡牌</span>
-            <span data-lang="zh-TW" class="tag">放置</span>
-            <span data-lang="zh-TW" class="tag">平台戰鬥</span>
-            <span data-lang="zh-TW" class="tag">角色扮演</span>
-            <span data-lang="zh-TW" class="tag">冒險</span>
-            <span data-lang="zh-TW" class="tag">肉鴿</span>
-
-            <span data-lang="en" class="tag">Cards</span>
-            <span data-lang="en" class="tag">Idle</span>
-            <span data-lang="en" class="tag">Platform Combat</span>
-            <span data-lang="en" class="tag">RPG</span>
-            <span data-lang="en" class="tag">Adventure</span>
-            <span data-lang="en" class="tag">Roguelike</span>
-
-            <span data-lang="fr" class="tag">Cartes</span>
-            <span data-lang="fr" class="tag">Idle</span>
-            <span data-lang="fr" class="tag">Combat</span>
-            <span data-lang="fr" class="tag">RPG</span>
-            <span data-lang="fr" class="tag">Aventure</span>
-            <span data-lang="fr" class="tag">Roguelike</span>
-
-            <span data-lang="de" class="tag">Karten</span>
-            <span data-lang="de" class="tag">Idle</span>
-            <span data-lang="de" class="tag">Kampf</span>
-            <span data-lang="de" class="tag">RPG</span>
-            <span data-lang="de" class="tag">Abenteuer</span>
-            <span data-lang="de" class="tag">Roguelike</span>
-
-            <span data-lang="hi" class="tag">कार्ड</span>
-            <span data-lang="hi" class="tag">आइडल</span>
-            <span data-lang="hi" class="tag">लड़ाई</span>
-            <span data-lang="hi" class="tag">आरपीजी</span>
-            <span data-lang="hi" class="tag">साहसिक</span>
-            <span data-lang="hi" class="tag">रोगलाइक</span>
-
-            <span data-lang="id" class="tag">Kartu</span>
-            <span data-lang="id" class="tag">Idle</span>
-            <span data-lang="id" class="tag">Pertarungan</span>
-            <span data-lang="id" class="tag">RPG</span>
-            <span data-lang="id" class="tag">Petualangan</span>
-            <span data-lang="id" class="tag">Roguelike</span>
-
-            <span data-lang="it" class="tag">Carte</span>
-            <span data-lang="it" class="tag">Idle</span>
-            <span data-lang="it" class="tag">Combattimento</span>
-            <span data-lang="it" class="tag">RPG</span>
-            <span data-lang="it" class="tag">Avventura</span>
-            <span data-lang="it" class="tag">Roguelike</span>
-
-            <span data-lang="ja" class="tag">カード</span>
-            <span data-lang="ja" class="tag">放置</span>
-            <span data-lang="ja" class="tag">バトル</span>
-            <span data-lang="ja" class="tag">RPG</span>
-            <span data-lang="ja" class="tag">冒険</span>
-            <span data-lang="ja" class="tag">ローグライク</span>
-
-            <span data-lang="ko" class="tag">카드</span>
-            <span data-lang="ko" class="tag">방치</span>
-            <span data-lang="ko" class="tag">전투</span>
-            <span data-lang="ko" class="tag">RPG</span>
-            <span data-lang="ko" class="tag">어드벤처</span>
-            <span data-lang="ko" class="tag">로그라이크</span>
-
-            <span data-lang="pl" class="tag">Karty</span>
-            <span data-lang="pl" class="tag">Idle</span>
-            <span data-lang="pl" class="tag">Walka</span>
-            <span data-lang="pl" class="tag">RPG</span>
-            <span data-lang="pl" class="tag">Przygoda</span>
-            <span data-lang="pl" class="tag">Roguelike</span>
-
-            <span data-lang="pt-BR" class="tag">Cartas</span>
-            <span data-lang="pt-BR" class="tag">Idle</span>
-            <span data-lang="pt-BR" class="tag">Combate</span>
-            <span data-lang="pt-BR" class="tag">RPG</span>
-            <span data-lang="pt-BR" class="tag">Aventura</span>
-            <span data-lang="pt-BR" class="tag">Roguelike</span>
-
-            <span data-lang="ru" class="tag">Карты</span>
-            <span data-lang="ru" class="tag">Афк</span>
-            <span data-lang="ru" class="tag">Бои</span>
-            <span data-lang="ru" class="tag">РПГ</span>
-            <span data-lang="ru" class="tag">Приключения</span>
-            <span data-lang="ru" class="tag">Roguelike</span>
-
-            <span data-lang="es" class="tag">Cartas</span>
-            <span data-lang="es" class="tag">Idle</span>
-            <span data-lang="es" class="tag">Combate</span>
-            <span data-lang="es" class="tag">RPG</span>
-            <span data-lang="es" class="tag">Aventura</span>
-            <span data-lang="es" class="tag">Roguelike</span>
-
-            <span data-lang="th" class="tag">การ์ด</span>
-            <span data-lang="th" class="tag">วางไว้</span>
-            <span data-lang="th" class="tag">ต่อสู้</span>
-            <span data-lang="th" class="tag">RPG</span>
-            <span data-lang="th" class="tag">ผจญภัย</span>
-            <span data-lang="th" class="tag">ร์โอเกอไลค์</span>
-
-            <span data-lang="vi" class="tag">Thẻ</span>
-            <span data-lang="vi" class="tag">Nhặt</span>
-            <span data-lang="vi" class="tag">Chiến đấu</span>
-            <span data-lang="vi" class="tag">Nhập vai</span>
-            <span data-lang="vi" class="tag">Phiêu lưu</span>
-            <span data-lang="vi" class="tag">Roguelike</span>
-        </div>
+  <footer class="bot" id="contact" data-page-node-id="XE9d9TdOHoEyPGLhH4kMuO">
+    <div class="wrap" data-page-node-id="9cdyWthRM3xhZDgp1l54Ip">
+      <button class="mail" id="mailbtn" type="button" data-mail="liuhuan_l_h@163.com" title="点击复制邮箱" data-page-node-id="AxYhmAggAGD9didGNGvQje">
+        <svg viewBox="0 0 24 24" data-page-node-id="ym3O7owQg4uT5vgo9vP2dB"><rect x="2.5" y="5" width="19" height="14" rx="2.5" data-page-node-id="AwKVqc6g8aAB72hfkbLpKi"/><path d="M3 7l9 6 9-6" data-page-node-id="B40GKY1pE1BVHRUWBF9NMq"/></svg>
+        liuhuan_l_h@163.com
+      </button>
+      <p class="hint" id="hint" data-page-node-id="PSBffj4axxAoFiLOS1YUBc">合作 / 反馈，点击复制邮箱</p>
+      <p class="copy" data-page-node-id="LDOV8iji9EdixO9MlV9P3F">
+        © 2026 热血百科 · 保留所有权利　|　<a href="yinsi.html" data-page-node-id="Mh7adMeuHsBkXMFwF7jVJw">隐私政策</a><br data-page-node-id="84ufOPH1Lo8xmBDDxo6NlG">
+        本页画面为宣传示意素材，非游戏实机截图
+      </p>
     </div>
-</section>
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <p data-lang="zh-CN">© 2026 荒原特工队 版权所有</p>
-        <p data-lang="zh-TW">© 2026 荒原特工隊 版權所有</p>
-        <p data-lang="en">© 2026 Wasteland Squad All Rights Reserved</p>
-        <p data-lang="fr">© 2026 Escouade Wasteland Tous droits réservés</p>
-        <p data-lang="de">© 2026 Wasteland Kommando Alle Rechte vorbehalten</p>
-        <p data-lang="hi">© 2026 वेस्टलैंड स्क्वाड सर्वाधिकार सुरक्षित</p>
-        <p data-lang="id">© 2026 Pasukan Wasteland Semua hak dilindungi</p>
-        <p data-lang="it">© 2026 Squadra Wasteland Tutti i diritti riservati</p>
-        <p data-lang="ja">© 2026 荒野の戦士 全著作権所有</p>
-        <p data-lang="ko">© 2026 황야 특전대 모든 권리 보유</p>
-        <p data-lang="pl">© 2026 Oddział Wasteland Wszelkie prawa zastrzeżone</p>
-        <p data-lang="pt-BR">© 2026 Esquadrão Wasteland Todos os direitos reservados</p>
-        <p data-lang="ru">© 2026 Отряд Пустоши Все права защищены</p>
-        <p data-lang="es">© 2026 Escuadrón Wasteland Todos los derechos reservados</p>
-        <p data-lang="th">© 2026 หน่วยรบทุ่งร้าง สงวนลิขสิทธิ์</p>
-        <p data-lang="vi">© 2026 Đội Đặc Nhiệm Hoang Dã Bản quyền thuộc về</p>
-
-        <p class="footer-mail">Contact: liuhuan_l_h@163.com</p>
-    </div>
-</footer>
+  </footer>
+</div>
 
 <script>
-    const langSwitch = document.getElementById('langSwitch');
-    const allLang = document.querySelectorAll('[data-lang]');
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function switchLang(lang) {
-        allLang.forEach(el => {
-            el.classList.remove('active');
-            if (el.dataset.lang === lang) el.classList.add('active');
-        });
-        document.documentElement.lang = lang;
+  /* 复制邮箱 */
+  var btn = document.getElementById("mailbtn");
+  var hint = document.getElementById("hint");
+  var DEF = "合作 / 反馈，点击复制邮箱";
+  function done(){
+    hint.textContent = "已复制：" + btn.getAttribute("data-mail");
+    hint.style.color = "#f2c24d";
+    setTimeout(function(){ hint.textContent = DEF; hint.style.color = ""; }, 2600);
+  }
+  function fallback(){
+    var ta = document.createElement("textarea");
+    ta.value = btn.getAttribute("data-mail");
+    ta.setAttribute("readonly","");
+    ta.style.position = "fixed"; ta.style.top = "-1000px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); }
+    catch(e){ hint.textContent = btn.getAttribute("data-mail"); }
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener("click", function(){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(btn.getAttribute("data-mail")).then(done, fallback);
+    } else { fallback(); }
+  });
+
+  /* 金色上升粒子 */
+  var cv = document.getElementById("fx");
+  if(cv && !reduce){
+    var ctx = cv.getContext("2d"), W = 0, H = 0, ps = [], raf = null;
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    function mk(init){
+      return { x: Math.random()*W, y: init ? Math.random()*H : H + 14,
+        r: Math.random()*1.7 + .5, vy: -(Math.random()*.42 + .14),
+        vx: (Math.random()-.5)*.3, a: Math.random()*.55 + .16,
+        ph: Math.random()*Math.PI*2, sp: Math.random()*.017 + .006 };
     }
-
-    langSwitch.addEventListener('change', e => switchLang(e.target.value));
-    switchLang('zh-CN');
+    function size(){
+      var r = document.querySelector(".stage").getBoundingClientRect();
+      W = r.width; H = r.height;
+      if(!W || !H) return;
+      cv.width = W * DPR; cv.height = H * DPR;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      var n = W < 760 ? 30 : 58;
+      ps = []; for(var i=0;i<n;i++) ps.push(mk(true));
+    }
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<ps.length;i++){
+        var p = ps[i];
+        p.x += p.vx + Math.sin(p.ph)*0.18; p.y += p.vy; p.ph += p.sp;
+        if(p.y < -16 || p.x < -24 || p.x > W + 24) ps[i] = mk(false);
+        var al = p.a * (0.5 + 0.5*Math.sin(p.ph));
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255," + (185 + Math.round(p.r*26)) + ",90," + al.toFixed(3) + ")";
+        ctx.shadowBlur = 10; ctx.shadowColor = "rgba(255,180,60,.8)";
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+      raf = requestAnimationFrame(tick);
+    }
+    size(); tick();
+    var t;
+    window.addEventListener("resize", function(){ clearTimeout(t); t = setTimeout(size, 200); });
+    document.addEventListener("visibilitychange", function(){
+      if(document.hidden){ if(raf) cancelAnimationFrame(raf); raf = null; }
+      else if(!raf){ tick(); }
+    });
+  }
+})();
 </script>
 </body>
 </html>
